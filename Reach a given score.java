@@ -1,25 +1,15 @@
- long[] memo = new long[n + 1];
-      
-        Arrays.fill(memo,-1);
+class Geeks {
+    public long count(int amount) {
+        int[] coins={3,5,10};
+        long [] dp=new long[amount+1];
+        dp[0]=1;
         
-        return countCombinations(n, memo);
+        for(int i=0;i<coins.length;i++){
+            for(int j=coins[i];j<dp.length;j++){
+                dp[j]+=dp[j-coins[i]];
+            }
+        }
+        
+        return dp[amount];
     }
-    
-    public long countCombinations(int score, long[] memo) {
-        if (score == 0) {
-            return 1;
-        }
-        if (score < 0) {
-            return 0;
-        }
-        if (memo[score] !=-1 ) {
-            return memo[score];
-        }
-        
-        long combinations = countCombinations(score - 3, memo) 
-                          + countCombinations(score - 5, memo) 
-                          + countCombinations(score - 10, memo);
-        
-       
-        memo[score] = combinations;
-        return combinations;
+}
