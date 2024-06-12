@@ -1,0 +1,30 @@
+class Solution {
+public static int countNumberswith4(int n) {
+        // code here
+        int count  = 0;
+        for(int i = 1; i <= n; i++)
+        {
+            if(search(i))
+            {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    public static boolean search(int n)
+    {
+        while(n > 0)
+        {
+            int r = n % 10;
+            if(r == 4)
+            {
+                return true;
+            }
+            n /= 10;
+        }
+        
+        return false;
+    }
+}
